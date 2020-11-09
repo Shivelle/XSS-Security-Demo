@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Posts</h1>
+<p>This is a collection of blog posts that showcases some common XSS vulnerabilities in a simple rails project.</p>
+<p>The problems here are mostly caused by using <i>html_safe</i> on <strong>@post.body</strong>.</p>
 
 <table>
   <thead>
