@@ -1,10 +1,27 @@
 body {
   font-family: 'Courier New', Courier, monospace;
   padding: 30px;
+  background-color: #fffcf2;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: #eb5e28;
+  font-weight: bold;
+  &:hover {
+    color: #F1906A;
+  }
+}
+
+#content {
+  margin: 0 auto;
+  max-width: 800px;
 }
 
 h1, h2, h4, h5 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #403d39;
 }
 
 td {
@@ -13,6 +30,15 @@ td {
 }
 
 textarea {
-  width: 300px;
-  height: 200px;
+  min-width: 300px;
+  min-height: 100px;
+  padding: 5px;
+  &.code {
+    width: 66%;
+    background-color: #F6BAA2;
+  }
+}
+
+.controls {
+  margin-top: 45px;
 }
