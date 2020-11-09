@@ -71,7 +71,7 @@ posts = Post.create([
   },
   {
     title: 'Malformed Tags',
-    description: "This problem occurs when the browser tries to fix malformed tags, resulting in the potential execution of a script or different unexpected behavior.<br> Different browsers have different 'fixing behavior'.",
+    description: "This problem occurs when the browser tries to fix malformed tags, resulting in the potential execution of a script or different unexpected behavior. Different browsers have different 'fixing behavior'.",
     code: "<script>alert('fixed it! :)')<div> -> <script>alert('fixed it! :)')</script><div></div>",
     body: "The road to hell is paved with good intentions... <script>alert('fixed it! :)')<div> "
   }
