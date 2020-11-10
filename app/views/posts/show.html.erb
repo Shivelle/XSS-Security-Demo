@@ -7,7 +7,7 @@
 
 <div>
   <h3>Description:</h3>
-  <%= @post.description %>
+  <%= sanitize @post.description %>
 </div>
 
 <% unless @post.code == '' %>
@@ -17,9 +17,9 @@
   </div>
 <% end %>
 
-<div>
+<div class="post_content">
   <h3>Content:</h3>
-  <%= @post.body.html_safe %>
+  <div><%= @post.body.html_safe %></div>
 </div>
 
 <div id="index"></div>
