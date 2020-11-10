@@ -71,9 +71,9 @@ posts = Post.create([
   },
   {
     title: 'Malformed Tags',
-    description: "This problem occurs when the browser tries to fix malformed tags, resulting in the potential execution of a script or different unexpected behavior. Different browsers have different 'fixing behavior'.",
-    code: "<script>alert('fixed it! :)')<div> -> <script>alert('fixed it! :)')</script><div></div>",
-    body: "The road to hell is paved with good intentions... <script>alert('fixed it! :)')<div> "
+    description: "This problem occurs when the browser tries to fix malformed tags, resulting in the potential execution of a script or different unexpected behavior. Different browsers have different 'fixing behavior'. In this case the browser takes the script tag out of the malformed image tag and puts that script right below the image tag. It interprets the remaining two characters as just not being part of the html.",
+    code: '<IMG """><SCRIPT>alert("Hey, I fixed your bad markup for you! :)")</SCRIPT>">',
+    body: 'The road to hell is paved with good intentions... <IMG """><SCRIPT>alert("Hey, I fixed your bad markup for you! :)")</SCRIPT>">'
   }
 
 ])
