@@ -38,8 +38,8 @@ posts = Post.create([
   {
     title: 'Fancy SVG',
     description: 'Refresh this page to see how broken SVG tags could ruin your day by using a modified svg tag...',
-    code: "<svg/onload=alert('Haha!')",
-    body: "Check out this awesome svg image we designed for you to see: <svg/onload=alert('Haha!')"
+    code: "<svg/onload=alert(1)",
+    body: "Check out this awesome svg image we designed for you to see: <svg/onload=alert(1)"
   },
   {
     title: 'Evil Iframe',
@@ -50,12 +50,12 @@ posts = Post.create([
   {
     title: 'Drag this',
     description: 'This will cause an alert on drag by using the ondragend attribute.',
-    code: '<xss draggable="true" ondragend="alert(1)">test</xss>',
-    body: 'This is some awesome draggable content! You can drag anything below! Give it a try! <xss draggable="true" ondragend="alert(1)">DRAG ME ROUND, ROUND, BABY, ROUND, ROUND 🎵</xss>'
+    code: '<xss draggable="true" ondragend="alert(1)">🎵 DRAG ME ROUND, ROUND, BABY, ROUND, ROUND 🎵</xss>',
+    body: 'This is some awesome draggable content! You can drag anything below! Give it a try! <br> <strong><xss draggable="true" ondragend="alert(1)">🎵 DRAG ME ROUND, ROUND, BABY, ROUND, ROUND 🎵</xss></strong>'
   },
   {
     title: 'Ajax to the max',
-    description: 'This button loads a script we created locally, but could also come from an external source. It will be executed via: onclick="loadPostIndex();. <br> Here we are calling .html() to render a partial via ajax which has .html_safe-flagged content.',
+    description: 'This button loads a script we created locally, but could also come from an external source. It will be executed via: <i>onclick="loadPostIndex();</i>. <br> Here we are calling <i>.html()</i> to render a partial via ajax which has <i>.html_safe</i>-flagged content.',
     code: "function loadPostIndex() {
       $.ajax({
         url: 'http://localhost:3000/ajax_index',
