@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'go back 🏠', root_path %>
+
+<h2>SQL Injection</h2>
+
+<p>You should <strong>NOT</strong> be able to see all these posts below!</p>
+<p>You only do because our controller looks like this:</p>
+
+<code><textarea class="code" readonly>
+def sql_injection
+  params[:title] = "') OR 1--"
+  @posts = Post.where("title = '#{params[:title]}'")
+end
+</textarea></code>
+
+<p>And now imagine the posts actually being users. 🤯</p>
+
+<h3>Why does it work?</h3>
+<p>The where method accepts several different formats such as string, array, or hash. If we pass user input directly to this method, it will be added to the query as a SQL fragment.</p>
+<p>The attack is the successful inclusion of an OR operator which helped us return all the records from database. More advanced queries could easily be crafted from this point onward.</p>
+<h3>Injection-free versions of this might look like this:</h3>
+<code><textarea class="better-code">
+Post.where(["title = ?", "#{params[:title]}"])
+</textarea></code>
+<p><i>The example above makes SQL injections impossible because the first element of the array is a template and the last are parameters to that template.</i></p>
+
+<code><textarea class="better-code">
+Post.where({ title: params[:title] })
+</textarea></code>
+<p><i>
+This is another incection-free version because column the name is set explicitly to the "title" and the external input set to the value of it.
+</i></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><strong><%= post.title %></strong></td>
+        <td><%= sanitize(post.body.truncate(30)) %></td>
+        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="controls">
+  <%= link_to 'New Post', new_post_path %>
+</div>

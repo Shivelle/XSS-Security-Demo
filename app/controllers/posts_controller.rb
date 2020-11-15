@@ -68,6 +68,13 @@ class PostsController < ApplicationController
     end
   end
 
+  def sql_injection
+    # Where Method
+    # shows every post, imagine these being users!
+    params[:title] = "') OR 1--"
+    @posts = Post.where("title = '#{params[:title]}'")
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
