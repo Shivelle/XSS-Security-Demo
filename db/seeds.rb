@@ -37,9 +37,9 @@ posts = Post.create([
   },
   {
     title: 'Fancy SVG',
-    description: 'Refresh this page to see how broken SVG tags could ruin your day by using a modified svg tag...',
-    code: "<svg/onload=alert(1)",
-    body: "Check out this awesome svg image we designed for you to see: <svg/onload=alert(1)"
+    description: 'Refresh this page to see how broken SVG tags could ruin your day by using the onload attribute on a svg tag. Another possible way would be including an ordinary script tag within the svg itself.',
+    code: "<svg onload=alert(1)>",
+    body: "Check out this awesome svg image we designed for you to see: <svg onload=alert(1)>"
   },
   {
     title: 'Evil Iframe',
@@ -67,7 +67,7 @@ posts = Post.create([
         }
       }});
     }",
-    body: '<button onclick="loadPostIndex();">Load Stuff</button>'
+    body: 'Get all the shiny content you always wanted to have: <br><br><button onclick="loadPostIndex();">Load Stuff</button>'
   },
   {
     title: 'Malformed Tags',

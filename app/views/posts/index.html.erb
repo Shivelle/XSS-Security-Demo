@@ -2,8 +2,7 @@
 
 <p>This is a collection of blog posts that showcases some common XSS vulnerabilities in a simple rails project.</p>
 <p>The problems here are mostly caused by using <i>html_safe</i> on <strong>@post.body</strong>.</p>
-
-<%= link_to 'SQL Injection', sql_injection_path %>
+<p>Except for this <%= link_to 'SQL Injection', sql_injection_path %></p>
 
 <table>
   <thead>
@@ -18,7 +17,7 @@
     <% @posts.each do |post| %>
       <tr>
         <td><strong><%= post.title %></strong></td>
-        <td><%= sanitize(post.body.truncate(30)) %></td>
+        <td><%= sanitize(post.description.truncate(30)) %></td>
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
