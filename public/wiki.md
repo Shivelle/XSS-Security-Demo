@@ -112,23 +112,16 @@ Die Anwendung von `html_safe` auf einen `String` escaped or unescaped nicht den 
 
 ##### Docs
 -   [OWASP Info](http://www.sec-art.net/p/web-security.html)
-
 -   [Rails-spezifisch (7-Injection)](https://guides.rubyonrails.org/security.html)
-
 -   [Html_safe & SafeBuffer](https://gist.github.com/joekur/73779c40c481a2f8a44f)
-
 -   [Info SQL-Injections](https://rails-sqli.org/)
+-   [Escaping JavaScript](https://blog.ircmaxell.com/2018/06/protecting-rails-xss.html)
 
 ##### Cheat Sheets & Listen
-
 -   [SQL-Injections Cheat Sheet](https://rorsecurity.info/portfolio/ruby-on-rails-sql-injection-cheat-sheet)
-
 -   [XSS Cheat Sheet I](https://owasp.org/www-community/xss-filter-evasion-cheatsheet)
-
 -   [XSS Cheat Sheet II](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet)
-
 -   [1483 XSS-Angriffsvektoren](https://gist.github.com/kurobeats/9a613c9ab68914312cbb415134795b45)
-
 -   [Weitere XSS-Angriffsvektoren](https://www.vulnerability-lab.com/resources/documents/531.txt)
 
 ##### Tools
@@ -136,19 +129,14 @@ Die Anwendung von `html_safe` auf einen `String` escaped or unescaped nicht den 
 
 ##### Games
 -   [XSS Game I](https://xss.pwnfunction.com/)
-
 -   [XSS Game II](https://xss-game.appspot.com/)
 
 ##### YouTube
 -   [Live Overflow YouTube Channel](https://www.youtube.com/channel/UClcE-kVhqyiHCcjYwcpfj9w)
-
 -   [Pawn Function YouTube Channel](https://www.youtube.com/channel/UCW6MNdOsqv2E9AjQkv9we7A)
 
 ##### Beispiele
 -   [XSS im Firmenname](https://www.golem.de/news/grossbritannien-firmenname-wegen-sicherheitsluecke-untersagt-2011-151984.html)
-
 -   [XSS in Twitch Chat](https://www.youtube.com/watch?v=2GtbY1XWGlQ)
-
 -   [XSS in Google Suche](https://www.youtube.com/watch?v=gVrdE6g_fa8)
-
 -   [XSS Security Demo](https://github.com/Shivelle/XSS-Security-Demo)
