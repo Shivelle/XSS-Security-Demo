@@ -28,7 +28,7 @@ Reflektiertes XSS tritt auf, wenn Benutzereingaben sofort von einer Webanwendung
 #### Persistentes XSS
 Persistentes XSS tritt in der Regel auf, wenn Benutzereingaben auf dem Zielserver gespeichert werden, z.B. in einer Datenbank, in einem Nachrichtenforum, einem Besucherprotokoll, einem Kommentarfeld usw.
 - Ein `@comment.content` wird mit `.html_safe` wieder ausgegeben. Ein Beispiel für eine Solche Lücke haben wir kürzlich in den Marketing-Seiten gefunden. Im Frontend wurde sanitized, im Backend `.html_safe` gesetzt. Das erlaubte das Einschleusen von Scripts in den Adminbereich.
-[Blog42 - XSS-Issue](https://git.42he.com/42he/gems-for-marketing-pages/blog42/-/issues/4)
+[Blog - XSS-Issue](xxx)
 
 #### DOM-basiertes oder lokales XSS
 DOM-basiertes XSS ist eine Form von XSS, bei der der gesamte schadhafte Datenfluss im Browser stattfindet, d.h. die Quelle der Daten befindet sich im DOM, der Ausführungsort ebenfalls im DOM, und der Datenfluss verlässt nie den Browser. Da hier die Webapplikation auf dem Server überhaupt nicht beteiligt ist, sind auch statische HTML-Seiten anfällig für diese Angriffsart.
@@ -90,4 +90,4 @@ Wenn man einen `SafeBuffer` einem weiteren `SafeBuffer` anfügt, findet kein  Es
 "<foo>".html_safe + "<bar>".html_safe
 # => "<foo><bar>"
 ```
-
+Die Anwendung von `html_safe` auf einen `String` escaped or unescaped nicht den `String` selbst. Der `String` wird überhaupt nicht verändert. Es wird lediglich `SafeBuffer` zurückgegeben.
