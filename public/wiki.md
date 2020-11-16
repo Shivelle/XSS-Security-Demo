@@ -65,12 +65,17 @@ XSS ist auch unter 'Big Playern' ein Thema. Nennenswerte Beispiele:
 
 ## Escaping, Strings & SafeBuffer
 #### Escaping
-HTML-Escaping bedeutet einfach, Sonderzeichen durch Entities zu ersetzen, sodass HTML versteht, diese Zeichen zu als diese Zeichen auszugeben, anstatt sie nach ihren speziellen Bedeutungen auszuführen. Beispielsweise wird `<` mit `&lt;`, `>` mit `&gt;` und `&` mit `&amp;` maskiert.
+HTML-Escaping bedeutet einfach, Sonderzeichen durch Entities zu ersetzen, sodass HTML versteht, diese Zeichen als diese Zeichen auszugeben, anstatt sie nach ihren speziellen Bedeutungen auszuführen. Beispielsweise wird `<` mit `&lt;`, `>` mit `&gt;` und `&` mit `&amp;` maskiert.
 
-#### SafeBuffer
+Beispiel:
+`<div class="element"> Hello </div>`
+wird zu
+`&lt;div class=&quot;element&quot;&gt; Hello &lt;/div&gt;`
+
+In Rails werden alle Strings automatisch escaped.
 
 #### Html_safe
-Die Anwendung von `html_safe` auf einen `String` gibt ein Objekt zurück, das aussieht und sich verhält wie ein `String`, aber eigentlich ein `SafeBuffer` ist.
+`.html_safe` ist missverständlich benannt und vermittelt den Eindruck, dass dessen Anwendung auf einen `String` diesen sicher machen würde. Stattdessen gibt die Anwendung von html_safe auf einen String ein Objekt zurück, das aussieht und sich verhält wie ein String, aber eigentlich ein SafeBuffer ist.
 
 ``` ruby
 "foo".class
@@ -80,6 +85,13 @@ Die Anwendung von `html_safe` auf einen `String` gibt ein Objekt zurück, das au
 "foo".html_safe.class
 # => ActiveSupport::SafeBuffer
 ```
+
+Mit einem `SafeBuffer` verbürgt man sich also dafür, dass alle Inhalte darin sicher sind, ohne dass weiteres Escaping oder sonstige Sicherheitsmaßnahmen stattfinden. Jeder darin enthaltene Code oder jedes darin enthaltene Markup wird bedenkenlos ausgeführt.
+
+[Source Code: SafeBuffer](https://github.com/rails/rails/blob/v5.2.4.4/activesupport/lib/active_support/core_ext/string/output_safety.rb#L135)
+
+#### Kombinationen
+`SafeBuffer` erbt von `String`, wobei `+`, `concat` und `<<` überschrieben werden. Daraus resultieren folgende Szenarien:
 Wenn man einen `String` einem `SafeBuffer` anfügt, dann wird der `String` vorher HTML-escaped.
 ``` ruby
 "<foo>".html_safe + "<bar>"
@@ -91,3 +103,52 @@ Wenn man einen `SafeBuffer` einem weiteren `SafeBuffer` anfügt, findet kein  Es
 # => "<foo><bar>"
 ```
 Die Anwendung von `html_safe` auf einen `String` escaped or unescaped nicht den `String` selbst. Der `String` wird überhaupt nicht verändert. Es wird lediglich `SafeBuffer` zurückgegeben.
+
+## XSS - Mehr als Defacing
+## Blacklisting vs. Whitelisting
+## Szenarien
+## Maßnahmen
+## Ressourcen
+
+##### Docs
+-   [OWASP Info](http://www.sec-art.net/p/web-security.html)
+
+-   [Rails-spezifisch (7-Injection)](https://guides.rubyonrails.org/security.html)
+
+-   [Html_safe & SafeBuffer](https://gist.github.com/joekur/73779c40c481a2f8a44f)
+
+-   [Info SQL-Injections](https://rails-sqli.org/)
+
+##### Cheat Sheets & Listen
+
+-   [SQL-Injections Cheat Sheet](https://rorsecurity.info/portfolio/ruby-on-rails-sql-injection-cheat-sheet)
+
+-   [XSS Cheat Sheet I](https://owasp.org/www-community/xss-filter-evasion-cheatsheet)
+
+-   [XSS Cheat Sheet II](https://portswigger.net/web-security/cross-site-scripting/cheat-sheet)
+
+-   [1483 XSS-Angriffsvektoren](https://gist.github.com/kurobeats/9a613c9ab68914312cbb415134795b45)
+
+-   [Weitere XSS-Angriffsvektoren](https://www.vulnerability-lab.com/resources/documents/531.txt)
+
+##### Tools
+-   [JSFuck - Script Converter](http://www.jsfuck.com/)
+
+##### Games
+-   [XSS Game I](https://xss.pwnfunction.com/)
+
+-   [XSS Game II](https://xss-game.appspot.com/)
+
+##### YouTube
+-   [Live Overflow YouTube Channel](https://www.youtube.com/channel/UClcE-kVhqyiHCcjYwcpfj9w)
+
+-   [Pawn Function YouTube Channel](https://www.youtube.com/channel/UCW6MNdOsqv2E9AjQkv9we7A)
+
+##### Beispiele
+-   [XSS im Firmenname](https://www.golem.de/news/grossbritannien-firmenname-wegen-sicherheitsluecke-untersagt-2011-151984.html)
+
+-   [XSS in Twitch Chat](https://www.youtube.com/watch?v=2GtbY1XWGlQ)
+
+-   [XSS in Google Suche](https://www.youtube.com/watch?v=gVrdE6g_fa8)
+
+-   [XSS Security Demo](https://github.com/Shivelle/XSS-Security-Demo)
